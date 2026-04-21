@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Sofia Melo — Clareamento Avançado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ivory:   #f9f6f1;
+      --white:   #ffffff;
+      --ink:     #1a1a1a;
+      --muted:   #6b6560;
+      --gold:    #c8a96e;
+      --line:    rgba(200, 169, 110, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(249, 246, 241, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.6; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .hero-text {
+      padding: 10rem 4rem 6rem 4rem;
+    }
+
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.8rem;
+      color: var(--ink);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 38ch;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.6rem;
+      background: var(--ink);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover { background: var(--gold); }
+
+    .hero-visual {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    /* abstract circle decoration */
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,0.18) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      z-index: 1;
+      padding: 2rem;
+    }
+
+    .tooth-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .stat-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200, 169, 110, 0.9);
+      margin-top: 0.5rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0 4rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .section {
+      padding: 7rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 3.5rem;
+      max-width: 22ch;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--line);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── BENEFITS BAND ── */
+    .band {
+      background: var(--ink);
+      color: var(--white);
+      padding: 5rem 4rem;
+    }
+
+    .band-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .band h2 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .band .section-label {
+      color: var(--gold);
+    }
+
+    .benefit-list {
+      list-style: none;
+      margin-top: 2rem;
+    }
+
+    .benefit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .benefit-list li:last-child { border-bottom: none; }
+
+    .benefit-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+
+    .quote-block {
+      border-left: 2px solid var(--gold);
+      padding-left: 2rem;
+    }
+
+    .quote-block blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-author {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── CAPTURE FORM ── */
+    .capture {
+      padding: 8rem 4rem;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .capture h2 {
+      margin: 0 auto 1.2rem;
+      text-align: center;
+    }
+
+    .capture p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 1rem 1.4rem;
+      border: 1px solid rgba(26,26,26,0.2);
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input::placeholder { color: #bbb; }
+    .form-group input:focus { border-color: var(--gold); }
+
+    .privacy {
+      font-size: 0.7rem;
+      color: #bbb;
+      margin-top: 1.2rem;
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .proof {
+      padding: 0 4rem 7rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .proof-card {
+      padding: 2rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .proof-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      line-height: 1.65;
+    }
+
+    .proof-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-text { padding: 9rem 1.5rem 3rem; }
+      .hero-visual { height: 55vw; min-height: 260px; }
+
+      .section { padding: 5rem 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+
+      .steps { grid-template-columns: 1fr; gap: 2rem; }
+
+      .band { padding: 4rem 1.5rem; }
+      .band-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+      .capture { padding: 5rem 1.5rem; }
+      .proof { grid-template-columns: 1fr; padding: 0 1.5rem 5rem; }
+
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="logo">Dra. Sofia Melo</span>
+    <a href="#captura" class="nav-cta">Agendar avaliação</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Método Lumière · Clareamento Avançado</p>
+      <h1>O branco<br/>que você<br/><em>merece</em> ter.</h1>
+      <p class="hero-sub">
+        Uma tecnologia desenvolvida para resultados que duram — sem sensibilidade, sem comprometer o esmalte.
+      </p>
+      <a href="#captura" class="btn-primary">Quero conhecer o método</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <!-- tooth SVG icon -->
+        <svg class="tooth-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4C22 4 14 11 14 20c0 5 2 9 4 12l4 22c1 4 4 6 6 6s4-2 4-4c0 2 2 4 4 4s5-2 6-6l4-22c2-3 4-7 4-12 0-9-8-16-18-16z" stroke="rgba(200,169,110,0.6)" stroke-width="1.5" fill="none"/>
+          <path d="M24 20c0-4 3.6-8 8-8s8 4 8 8" stroke="rgba(200,169,110,0.3)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="stat-big">12×</div>
+        <div class="stat-label">mais luminoso em uma sessão</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <p class="section-label fade-in">Como funciona</p>
+    <h2 class="fade-in">Três etapas. Um resultado extraordinário.</h2>
+
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">01</div>
+        <h3>Avaliação de esmalte</h3>
+        <p>Análise digital do seu esmalte dentário para personalizar o protocolo com precisão milimétrica.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">02</div>
+        <h3>Gel fotoativo Lumière</h3>
+        <p>Formulação exclusiva com peróxido encapsulado — ação profunda sem agredir a estrutura do dente.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">03</div>
+        <h3>Luz LED de baixa frequência</h3>
+        <p>Ativação precisa que potencializa o gel e sela o resultado, garantindo duração de até 18 meses.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS BAND -->
+  <div class="band">
+    <div class="band-inner">
+      <div>
+        <p class="section-label">Por que Lumière</p>
+        <h2>Ciência que respeita o seu sorriso.</h2>
+        <ul class="benefit-list">
+          <li>
+            <span class="benefit-dot"></span>
+            <span>Sem sensibilidade durante ou após o procedimento</span>
+          </li>
+          <li>
+            <span class="benefit-dot"></span>
+            <span>Resultado visível em sessão única de 60 minutos</span>
+          </li>
+          <li>
+            <span class="benefit-dot"></span>
+            <span>Gel com pH neutro — esmalte protegido</span>
+          </li>
+          <li>
+            <span class="benefit-dot"></span>
+            <span>Efeito natural: branco luminoso, não artificial</span>
+          </li>
+          <li>
+            <span class="benefit-dot"></span>
+            <span>Manutenção simples com kit domiciliar exclusivo</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="quote-block fade-in">
+        <blockquote>
+          "Passamos anos desenvolvendo uma formulação que clareia sem destruir. Lumière é o equilíbrio perfeito entre estética e saúde."
+        </blockquote>
+        <span class="quote-author">Dra. Sofia Melo — CRO 12.847 · Especialista em Estética Dental</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPTURE FORM -->
+  <section class="capture" id="captura">
+    <p class="section-label">Avaliação gratuita</p>
+    <h2 class="fade-in">Descubra o tom ideal para o seu sorriso.</h2>
+    <p>Preencha abaixo e nossa equipe entrará em contato em até 24 h para agendar sua avaliação sem compromisso.</p>
+
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <input type="text" id="nome" placeholder="Seu nome" required />
+        <input type="tel" id="telefone" placeholder="WhatsApp" required />
+        <input type="email" id="email" placeholder="E-mail" required />
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;display:block;text-align:center;">
+        Quero minha avaliação gratuita
+      </button>
+    </form>
+    <p class="privacy">Seus dados estão seguros. Sem spam, prometemos.</p>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <div class="proof">
+    <div class="proof-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p>"Fiz uma sessão e saí com o sorriso completamente transformado. Sem nenhuma dor — foi surpreendente."</p>
+      <span class="proof-name">Mariana T.</span>
+    </div>
+    <div class="proof-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p>"Já tinha tentado outros métodos sem resultado. Lumière foi diferente — resultado real, de verdade."</p>
+      <span class="proof-name">Rafael C.</span>
+    </div>
+    <div class="proof-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p>"A Dra. Sofia é cuidadosa e atenciosa. O método é incrível e o resultado durou mais de um ano."</p>
+      <span class="proof-name">Beatriz M.</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Dra. Sofia Melo — Odontologia Estética</span>
+    <span>Av. Brigadeiro Faria Lima, 3477 · São Paulo · (11) 99999-0000</span>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Form submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Enviado! Entraremos em contato em breve.';
+      btn.style.background = '#c8a96e';
+      btn.disabled = true;
+      e.target.querySelectorAll('input').forEach(i => i.disabled = true);
+    }
+  </script>
+</body>
+</html>
